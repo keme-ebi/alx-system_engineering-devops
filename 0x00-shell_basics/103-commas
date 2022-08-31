@@ -1,1 +1,1 @@
-ls -m
+ls -a -m -p -s nl

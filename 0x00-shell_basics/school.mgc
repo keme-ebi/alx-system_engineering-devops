@@ -1,3 +1,2 @@
 #!/bin/bash
-SCHOOL
-School
+file -c

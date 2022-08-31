@@ -1,1 +1,2 @@
-ls -a -m -p -s nl
+#!/bin/bash
+ls -a -m -p -s\n

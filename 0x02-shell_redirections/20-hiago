@@ -1,2 +1,2 @@
 #!/bin/bash
-tr [:alpha:] c
+tr -d Cc

@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# displays the content of the current directory in a list format
+for file in *
+do
+	if [ -f "$file" ]
+	then
+		echo "${file:2}"
+	fi
+done

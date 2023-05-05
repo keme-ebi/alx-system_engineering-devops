@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
 # displays the visitor IP along with the HTTP status code from the apache log file
+# in this format: OCCURRENCE_NUMBER IP HTTP_CODE
 awk '{print $NR, $1, $9}' apache-access.log | sort | uniq -c | sort -rn

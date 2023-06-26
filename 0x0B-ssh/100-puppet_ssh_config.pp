@@ -1,9 +1,11 @@
 # Set up client SSH configuration in order to connect without password
 
-file { "/usr/bin":
+file { '/etc/ssh/ssh_config':
     ensure  => present,
-    content => "
+    content => '
+      Host *
+        PasswordAuthentication no
+
       Host 34.207.189.167
-        IdentityFile ~/.ssh/school
-        PasswordAuthentication no",
+        IdentityFile ~/.ssh/school',
 }

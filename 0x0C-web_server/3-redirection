@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # configures nginx server to redirect to another page
-sudo apt update
-sudo apt install -y nginx
+apt update
+apt install -y nginx
 
-sudo sed -i '/location \/ {/a \\location \/redirect_me {\n\t\return 301 https:\/\/youtube.com\/;\n\t}' /etc/nginx/sites-available/default
+sed -i '/location \/ {/a \\location \/redirect_me {\n\t\return 301 https:\/\/youtube.com\/;\n\t}' /etc/nginx/sites-available/default
 
-sudo service nginx restart
+service nginx restart

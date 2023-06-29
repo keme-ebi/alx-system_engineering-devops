@@ -5,9 +5,10 @@ sudo apt install -y nginx
 
 echo "server {
     listen 80;
+    
     location / {
-        echo 'Hello World!';
+        return 200 'Hello World!';
     }
 }" > /etc/nginx/sites-available/default
 
-sudo service nginx restart
+sudo service nginx start

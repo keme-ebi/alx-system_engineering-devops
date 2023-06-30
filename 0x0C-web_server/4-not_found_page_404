@@ -3,6 +3,8 @@
 sudo apt update
 sudo apt install -y nginx
 
+sudo service nginx start
+
 echo "Ceci n'est pas une page" > /usr/share/nginx/html/
 
 echo "server {
@@ -15,5 +17,5 @@ echo "server {
 
 sudo sed -i "/location \/ {/a \\\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/youtube.com\/;\n\t}\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/usr\/share\/nginx\/html;\n\t\tinternal;\n\t}" /etc/nginx/sites-available/default
 
-sudo service nginx start
+sudo service nginx restart
 sudo service nginx reload

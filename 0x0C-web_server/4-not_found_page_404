@@ -5,7 +5,7 @@ sudo apt install -y nginx
 
 sudo service nginx start
 
-echo "Ceci n'est pas une page" > /usr/share/nginx/html/
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/404.html
 
 echo "server {
     listen 80;

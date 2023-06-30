@@ -3,6 +3,7 @@
 sudo apt update
 sudo apt install -y nginx
 
+echo "Ceci n'est pas une page" > /usr/share/nginx/html/
 
 echo "server {
     listen 80;
@@ -13,5 +14,6 @@ echo "server {
 }" > /etc/nginx/sites-available/default
 
 sudo sed -i "/listen 80;/a \    server_name _;\n\n    location \/redirect_me {\n\treturn 301 https:\/\/youtube.com\/;\n    }\n    error_page 404 \/404.html;\n    location = \/404.html {\n\troot \/usr\/share\/nginx\/html;\n\tinternal;\n\treturn 404 \"Ceci n\'est pas une page\";\n    }" /etc/nginx/sites-available/default
+
 sudo service nginx restart
 sudo service nginx reload

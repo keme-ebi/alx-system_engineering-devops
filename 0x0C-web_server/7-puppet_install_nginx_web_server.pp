@@ -25,7 +25,7 @@ file { '/etc/nginx/sites-available/default':
         }
 
         location = / {
-            return 200 "Hello World!";
+            return 200 'Hello World!';
         }
     }",
   notify  => Service['nginx'],

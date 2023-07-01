@@ -6,6 +6,6 @@ file { '/etc/ssh/ssh_config':
       Host *
         PasswordAuthentication no
 
-      Host 34.207.189.167
+      Host 100.25.140.168
         IdentityFile ~/.ssh/school',
 }

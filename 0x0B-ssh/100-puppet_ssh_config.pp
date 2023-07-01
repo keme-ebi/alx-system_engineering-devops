@@ -5,7 +5,5 @@ file { '/etc/ssh/ssh_config':
     content => '
       Host *
         PasswordAuthentication no
-
-      Host 100.25.140.168
         IdentityFile ~/.ssh/school',
 }

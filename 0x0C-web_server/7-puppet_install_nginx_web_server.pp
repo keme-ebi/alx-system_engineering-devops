@@ -24,13 +24,9 @@ file { '/etc/nginx/sites-available/default':
             return 301 https://youtube.com/;
         }
 
-        location / {
-            try_files \$uri \$uri =404;
-        }
-
         location = / {
             return 200 "Hello World!";
         }
     }",
-  notify => Service['nginx'],
+  notify  => Service['nginx'],
 }

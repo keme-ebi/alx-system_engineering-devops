@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# installs an nginx server and configures it
+# also configures nginx so that its http response contains a custom header
+sudo apt update
+sudo apt install -y nginx
+
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+hostname=$(hostname)
+
+sudo sed -i '/server_name _;/a \\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/youtube.com\/;\n\t}' /etc/nginx/sites-available/default
+
+sudo sed -i "/location \/ {/a \\\t\terror_page 404 \/404.html;" /etc/nginx/sites-available/default
+
+sudo sed -i "/http {/a \\\tadd_header X-Served-By \"$hostname\";" /etc/nginx/nginx.conf
+
+sudo service nginx start

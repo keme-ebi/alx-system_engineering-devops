@@ -28,6 +28,7 @@ file { '/etc/nginx/sites-available/default':
             return 200 'Hello World!';
         }
     }",
+  notify  => Service['nginx'],
 }
 
 file { '/etc/nginx/nginx.conf':
@@ -37,10 +38,5 @@ file { '/etc/nginx/nginx.conf':
     http {
         add_header X-Served-By '$hostname';
     }",
-}
-
-service { 'nginx':
-  ensure    => 'running',
-  enable    => 'true',
-  hasstatus => 'true',
+  notify      => Service['nginx'],
 }

@@ -33,7 +33,7 @@ file { '/etc/nginx/sites-available/default':
 
 file { '/etc/nginx/nginx.conf':
   ensure      => present,
-  environment => ["hostname=$(hostname)"],
+  environment => ["hostname=${hostname}"],
   content     => "
     http {
         add_header X-Served-By '$hostname';

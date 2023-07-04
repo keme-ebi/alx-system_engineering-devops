@@ -27,4 +27,6 @@ backend http_back
 EOF
 
 sudo systemctl enable haproxy
-sudo systemctl restart haproxy
+sudo service haproxy start
+
+sudo service haproxy restart

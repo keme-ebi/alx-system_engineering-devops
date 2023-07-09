@@ -1,0 +1,14 @@
+#e!/sr/bin/env bash
+# prints out the subdomain and ip address of a site
+if [ $# -eq 1 ]; then
+	echo "The subdomain www is a $(dig "www.$1" | grep -A1 'ANSWER SECTION:'| tail -1 | awk '{ print $4 }') record and points to $(dig +short www.$1 | awk '{ print $1 }')"
+	echo "The subdomain lb-01 is a $(dig "lb-01.$1" | grep -A1 'ANSWER SECTION:'| tail -1 | awk '{ print $4 }') record and points to $(dig +short lb-01.$1 | awk '{ print $1 }')"
+	echo "The subdomain web-01 is a $(dig "web-01.$1" | grep -A1 'ANSWER SECTION:'| tail -1 | awk '{ print $4 }') record and points to $(dig +short web-01.$1 | awk '{ print $1 }')"
+	echo "The subdomain web-02 is a $(dig "web-02.$1" | grep -A1 'ANSWER SECTION:'| tail -1 | awk '{ print $4 }') record and points to $(dig +short web-02.$1 | awk '{ print $1 }')"
+fi
+
+if [ $# -eq 2 ]; then
+	record_type=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:'| tail -1 | awk '{ print $4 }')
+	ip_address=$(dig "$2.$1" | grep -A1 'ANSWER SECTION:'| tail -1 | awk '{ print $5 }')
+	echo "The subdomain $2 is a $record_type record and points to $ip_address"
+fi

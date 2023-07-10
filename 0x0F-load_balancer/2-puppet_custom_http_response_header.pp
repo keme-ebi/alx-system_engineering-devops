@@ -9,27 +9,28 @@ service { 'nginx':
   enable => true,
 }
 
-file { '/etc/nginx/sites-available/default':
-  ensure  => present,
-  content => "
-    server {
-        listen 80 default_server;
-        listen [::]:80 default_server;
-
-        root /var/www/html;
-        index index.html index.htm;
-
-        server_name _;
-        location /redirect_me {
-            return 301 https://youtube.com/;
-        }
-
-        location = / {
-            return 200 'Hello World!';
-        }
-    }",
-  notify  => Service['nginx'],
-}
+# file { '/etc/nginx/sites-available/default':
+#  ensure  => present,
+#  content => "
+#    server {
+#        listen 80 default_server;
+#        listen [::]:80 default_server;
+#
+#        root /var/www/html;
+#        index index.html index.htm;
+#
+#        server_name _;
+#        location /redirect_me {
+#            return 301 https://youtube.com/;
+#        }
+#
+#        location = / {
+#            error_page 404 /404.html;
+#            return 200 'Hello World!';
+#        }
+#    }",
+#  notify  => Service['nginx'],
+# }
 
 file { '/etc/nginx/nginx.conf':
   ensure      => present,

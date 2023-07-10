@@ -9,34 +9,35 @@ service { 'nginx':
   enable => true,
 }
 
-# file { '/etc/nginx/sites-available/default':
-#  ensure  => present,
-#  content => "
-#    server {
-#        listen 80 default_server;
-#        listen [::]:80 default_server;
-#
-#        root /var/www/html;
-#        index index.html index.htm;
-#
-#        server_name _;
-#        location /redirect_me {
-#            return 301 https://youtube.com/;
-#        }
-#
-#        location = / {
-#            error_page 404 /404.html;
-#            return 200 'Hello World!';
-#        }
-#    }",
-#  notify  => Service['nginx'],
-# }
+file { '/etc/nginx/sites-available/default':
+  ensure  => present,
+  content => "
+    server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
 
-file { '/etc/nginx/nginx.conf':
-  ensure      => present,
-  content     => "
-    http {
-        add_header X-Served-By '$::hostname';
+        root /var/www/html;
+        index index.html index.htm;
+
+        server_name _;
+        location /redirect_me {
+            return 301 https://youtube.com/;
+        }
+        location = / {
+            error_page 404 /404.html;
+            return 200 'Hello World!';
+        }
     }",
-  notify      => Service['nginx'],
+  notify  => Service['nginx'],
+}
+
+exec { 'add_header':
+  provider => shell,
+  command  => 'sudo sed -i "/http {/a \\\tadd_header X-Served-By \"$hostname\";" /etc/nginx/nginx.conf'
+}
+
+exec { 'restart':
+  provider => shell,
+  command  => 'sudo service restart',
+  after    => Exec['add_header'],
 }

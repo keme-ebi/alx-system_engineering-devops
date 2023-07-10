@@ -2,4 +2,4 @@
 # reconfiguring nginx server to listen to port 80
 sudo sed -i 's/8080/80/g; s/ ipv6only=on//g' /etc/nginx/sites-enabled/default
 sudo sed -i 's/ ipv6only=on//g' /etc/nginx/sites-available/default
-sudo service nginx restart
+sudo systemctl restart nginx

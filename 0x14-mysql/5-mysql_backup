@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# compresses a dump file to a tar.gz file
+# current date
+cur_date=$(date +%d-%m-%Y)
+
+# name of archive file
+arc_file="$cur_date.tar.gz"
+
+# generating dump file, used $1 so that script accepts password as argument
+mysqldump -u root -p"$1" --all-databases > backup.sql
+
+# compress file to tar.gz
+tar -czvf $arc_file backup.sql

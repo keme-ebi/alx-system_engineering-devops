@@ -31,9 +31,8 @@ if __name__ == '__main__':
         complete_stat = task.get('completed')
         title = task.get('title')
         data.append({'task': title,
-            'completed': complete_stat,
-            'username': username,
-            })
+                     'completed': complete_stat,
+                     'username': username, })
 
     # transfer to a dictionary
     dic = {user_id: data}

@@ -5,5 +5,4 @@ chmod 777 /etc/nginx/nginx.conf
 
 sudo sed -i 's/listen 80/listen 8080/g' /etc/nginx/sites-available/default
 pkill -9 apache2
-
 sudo -u nginx service nginx restart

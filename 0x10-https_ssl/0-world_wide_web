@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# a script that displays information for subdomains of a domain
+dig=$(dig www.$1 | grep -A1 'ANSWER SECTION:')
+add=$(echo "$dig" | awk '{print$5}' | tr -d '\n')
+ab=$(echo "$dig" | awk '{print$4}' | tr -d '\n')
+echo "The subdomain www is a $ab record and points to $add"
+dig=$(dig lb-01.$1 | grep -A1 'ANSWER SECTION:')
+add=$(echo "$dig" | awk '{print$5}' | tr -d '\n')
+ab=$(echo "$dig" | awk '{print$4}' | tr -d '\n')
+echo "The subdomain lb-01 is a $ab record and points to $add"
+dig=$(dig web-01.$1 | grep -A1 'ANSWER SECTION:')
+add=$(echo "$dig" | awk '{print$5}' | tr -d '\n')
+ab=$(echo "$dig" | awk '{print$4}' | tr -d '\n')
+echo "The subdomain web-01 is a $ab record and points to $add"
+dig=$(dig web-02.$1 | grep -A1 'ANSWER SECTION:')
+add=$(echo "$dig" | awk '{print$5}' | tr -d '\n')
+ab=$(echo "$dig" | awk '{print$4}' | tr -d '\n')
+echo "The subdomain web-02 is a $ab record and points to $add"

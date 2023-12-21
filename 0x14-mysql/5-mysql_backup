@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# script that generates a mysql dump and creates a compressed archive of it
+if [ "$#" -eq 1 ]; then
+        passwd=$1
+        cur_date=$(date +"%d-%m-%Y")
+        archive_name="${cur_date}.tar.gz"
+
+        sudo mysqldump -u root -p"${passwd}" --all-databases > "backup.sql"
+
+        tar -czvf "${archive_name}" "backup.sql"
+fi

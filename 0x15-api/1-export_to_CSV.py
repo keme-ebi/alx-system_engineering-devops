@@ -22,7 +22,8 @@ if __name__ == "__main__":
     filename = "{}.csv".format(e_id)
 
     with open(filename, 'w', encoding='UTF8') as f:
-        writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_ALL)
+        writer = csv.writer(f, delimiter=',', quotechar='"',
+                            quoting=csv.QUOTE_ALL)
 
         for data in datas:
             user_id = data.get('userId')
